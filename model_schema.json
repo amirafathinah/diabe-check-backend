@@ -1,0 +1,498 @@
+{
+  "model_info": {
+    "name": "Diabetes Risk Prediction (Tuned Ensemble)",
+    "version": "3.0.0",
+    "classes": [
+      "High",
+      "Low",
+      "Moderate"
+    ],
+    "threshold_low": 0.4,
+    "precision_floor": 0.6,
+    "metrics": {
+      "test_macro_f1": 0.8589,
+      "test_low_f1": 0.6979,
+      "test_low_precision": 0.6837,
+      "test_low_recall": 0.7128,
+      "cv_macro_f1": "0.8160 ± 0.0241"
+    },
+    "ensemble_weights": {
+      "xgb": 0.55,
+      "lgbm": 0.45
+    },
+    "disclaimer": "This is a screening tool, not a medical diagnosis. Consult a doctor."
+  },
+  "features": {
+    "numeric": [
+      {
+        "name": "Age",
+        "type": "number",
+        "required": false,
+        "default": 54.0,
+        "min": 1,
+        "max": 120,
+        "median": 54.0
+      },
+      {
+        "name": "Height_cm",
+        "type": "number",
+        "required": false,
+        "default": 170.1,
+        "min": 100,
+        "max": 220,
+        "median": 170.1
+      },
+      {
+        "name": "Weight_kg",
+        "type": "number",
+        "required": false,
+        "default": 87.4,
+        "min": 20,
+        "max": 300,
+        "median": 87.4
+      },
+      {
+        "name": "BMI",
+        "type": "number",
+        "required": false,
+        "default": 30.1,
+        "min": 10,
+        "max": 70,
+        "median": 30.1
+      },
+      {
+        "name": "Waist_Circumference_cm",
+        "type": "number",
+        "required": false,
+        "default": 100.0,
+        "min": 30,
+        "max": 250,
+        "median": 100.0
+      },
+      {
+        "name": "Blood_Glucose",
+        "type": "number",
+        "required": false,
+        "default": 160.3,
+        "min": 40,
+        "max": 600,
+        "median": 160.3
+      },
+      {
+        "name": "HbA1c",
+        "type": "number",
+        "required": false,
+        "default": 8.5,
+        "min": 3.0,
+        "max": 20.0,
+        "median": 8.5
+      },
+      {
+        "name": "Fasting_Blood_Sugar",
+        "type": "number",
+        "required": false,
+        "default": 143.3,
+        "min": 40,
+        "max": 600,
+        "median": 143.3
+      },
+      {
+        "name": "Insulin_Level",
+        "type": "number",
+        "required": false,
+        "default": 23.3,
+        "min": 0,
+        "max": 500,
+        "median": 23.3
+      },
+      {
+        "name": "Blood_Pressure_Systolic",
+        "type": "number",
+        "required": false,
+        "default": 140.0,
+        "min": 70,
+        "max": 250,
+        "median": 140.0
+      },
+      {
+        "name": "Blood_Pressure_Diastolic",
+        "type": "number",
+        "required": false,
+        "default": 90.0,
+        "min": 40,
+        "max": 150,
+        "median": 90.0
+      },
+      {
+        "name": "Total_Cholesterol",
+        "type": "number",
+        "required": false,
+        "default": 220.3,
+        "min": 50,
+        "max": 600,
+        "median": 220.3
+      },
+      {
+        "name": "HDL",
+        "type": "number",
+        "required": false,
+        "default": 57.1,
+        "min": 10,
+        "max": 200,
+        "median": 57.1
+      },
+      {
+        "name": "LDL",
+        "type": "number",
+        "required": false,
+        "default": 134.7,
+        "min": 10,
+        "max": 500,
+        "median": 134.7
+      },
+      {
+        "name": "Triglycerides",
+        "type": "number",
+        "required": false,
+        "default": 228.4,
+        "min": 20,
+        "max": 1000,
+        "median": 228.4
+      },
+      {
+        "name": "Heart_Rate",
+        "type": "number",
+        "required": false,
+        "default": 85.0,
+        "min": 30,
+        "max": 250,
+        "median": 85.0
+      },
+      {
+        "name": "Exercise_Hours_Per_Week",
+        "type": "number",
+        "required": false,
+        "default": 5.1,
+        "min": 0,
+        "max": 40,
+        "median": 5.1
+      },
+      {
+        "name": "Daily_Walking_Minutes",
+        "type": "number",
+        "required": false,
+        "default": 90.1,
+        "min": 0,
+        "max": 600,
+        "median": 90.1
+      },
+      {
+        "name": "Sleep_Hours",
+        "type": "number",
+        "required": false,
+        "default": 6.5,
+        "min": 0,
+        "max": 24,
+        "median": 6.5
+      },
+      {
+        "name": "Daily_Water_Intake_L",
+        "type": "number",
+        "required": false,
+        "default": 3.0,
+        "min": 0,
+        "max": 15,
+        "median": 3.0
+      }
+    ],
+    "categorical": [
+      {
+        "name": "Gender",
+        "type": "select",
+        "required": false,
+        "default": "Male",
+        "options": [
+          "Male",
+          "Female",
+          "Other"
+        ]
+      },
+      {
+        "name": "Country",
+        "type": "select",
+        "required": false,
+        "default": "France",
+        "options": [
+          "South Korea",
+          "Saudi Arabia",
+          "Brazil",
+          "Germany",
+          "United States",
+          "Nigeria",
+          "Indonesia",
+          "Malaysia",
+          "Italy",
+          "Canada",
+          "Russia",
+          "Egypt",
+          "Mexico",
+          "Argentina",
+          "France",
+          "China",
+          "United Kingdom",
+          "South Africa",
+          "Turkey",
+          "India",
+          "Spain",
+          "Australia",
+          "Japan",
+          "Bangladesh",
+          "Pakistan"
+        ]
+      },
+      {
+        "name": "Physical_Activity_Level",
+        "type": "select",
+        "required": false,
+        "default": "Low",
+        "options": [
+          "High",
+          "Low",
+          "Moderate"
+        ]
+      },
+      {
+        "name": "Diet_Quality",
+        "type": "select",
+        "required": false,
+        "default": "Healthy",
+        "options": [
+          "Poor",
+          "Average",
+          "Healthy"
+        ]
+      },
+      {
+        "name": "Sugar_Intake_Level",
+        "type": "select",
+        "required": false,
+        "default": "Low",
+        "options": [
+          "Moderate",
+          "Low",
+          "High"
+        ]
+      },
+      {
+        "name": "Stress_Level",
+        "type": "select",
+        "required": false,
+        "default": "Low",
+        "options": [
+          "Low",
+          "High",
+          "Moderate"
+        ]
+      },
+      {
+        "name": "Smoking_Status",
+        "type": "select",
+        "required": false,
+        "default": "Current",
+        "options": [
+          "Current",
+          "Former",
+          "Never"
+        ]
+      },
+      {
+        "name": "Alcohol_Consumption",
+        "type": "select",
+        "required": false,
+        "default": "Occasionally",
+        "options": [
+          "Frequently",
+          "Occasionally",
+          "Never"
+        ]
+      },
+      {
+        "name": "Family_History_Diabetes",
+        "type": "select",
+        "required": false,
+        "default": "No",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "Hypertension",
+        "type": "select",
+        "required": false,
+        "default": "Yes",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "Heart_Disease",
+        "type": "select",
+        "required": false,
+        "default": "No",
+        "options": [
+          "No",
+          "Yes"
+        ]
+      },
+      {
+        "name": "Fatty_Liver",
+        "type": "select",
+        "required": false,
+        "default": "No",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "PCOS",
+        "type": "select",
+        "required": false,
+        "default": "No",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "Medication_Adherence",
+        "type": "select",
+        "required": false,
+        "default": "Average",
+        "options": [
+          "Poor",
+          "Average",
+          "Good"
+        ]
+      },
+      {
+        "name": "Work_Type",
+        "type": "select",
+        "required": false,
+        "default": "Business",
+        "options": [
+          "Private",
+          "Student",
+          "Retired",
+          "Business",
+          "Government"
+        ]
+      },
+      {
+        "name": "Residence_Type",
+        "type": "select",
+        "required": false,
+        "default": "Urban",
+        "options": [
+          "Rural",
+          "Urban"
+        ]
+      }
+    ]
+  },
+  "valid_ranges": {
+    "Age": [
+      1,
+      120
+    ],
+    "BMI": [
+      10,
+      70
+    ],
+    "Height_cm": [
+      100,
+      220
+    ],
+    "Weight_kg": [
+      20,
+      300
+    ],
+    "Blood_Glucose": [
+      40,
+      600
+    ],
+    "HbA1c": [
+      3.0,
+      20.0
+    ],
+    "Fasting_Blood_Sugar": [
+      40,
+      600
+    ],
+    "Insulin_Level": [
+      0,
+      500
+    ],
+    "Blood_Pressure_Systolic": [
+      70,
+      250
+    ],
+    "Blood_Pressure_Diastolic": [
+      40,
+      150
+    ],
+    "Total_Cholesterol": [
+      50,
+      600
+    ],
+    "HDL": [
+      10,
+      200
+    ],
+    "LDL": [
+      10,
+      500
+    ],
+    "Triglycerides": [
+      20,
+      1000
+    ],
+    "Heart_Rate": [
+      30,
+      250
+    ],
+    "Exercise_Hours_Per_Week": [
+      0,
+      40
+    ],
+    "Daily_Walking_Minutes": [
+      0,
+      600
+    ],
+    "Sleep_Hours": [
+      0,
+      24
+    ],
+    "Daily_Water_Intake_L": [
+      0,
+      15
+    ],
+    "Waist_Circumference_cm": [
+      30,
+      250
+    ]
+  },
+  "priority_features": [
+    "Age",
+    "BMI",
+    "HbA1c",
+    "Fasting_Blood_Sugar",
+    "Blood_Glucose",
+    "Family_History_Diabetes",
+    "Hypertension",
+    "Diet_Quality",
+    "Physical_Activity_Level"
+  ]
+}
