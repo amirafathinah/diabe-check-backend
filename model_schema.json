@@ -1,24 +1,25 @@
 {
   "model_info": {
-    "name": "Diabetes Risk Prediction (Tuned Ensemble)",
-    "version": "3.0.0",
+    "name": "Diabetes Risk Prediction (Stacking v4)",
+    "version": "4.0.0",
     "classes": [
       "High",
       "Low",
       "Moderate"
     ],
-    "threshold_low": 0.4,
-    "precision_floor": 0.6,
+    "threshold_low": 0.0,
+    "precision_floor": 0.0,
     "metrics": {
-      "test_macro_f1": 0.8589,
-      "test_low_f1": 0.6979,
-      "test_low_precision": 0.6837,
-      "test_low_recall": 0.7128,
-      "cv_macro_f1": "0.8160 ± 0.0241"
+      "test_macro_f1": 0.8974,
+      "test_low_f1": 0.7917,
+      "test_low_precision": 0.7755,
+      "test_low_recall": 0.8085,
+      "cv_macro_f1": "0.8261"
     },
     "ensemble_weights": {
-      "xgb": 0.55,
-      "lgbm": 0.45
+      "xgb": 1.0,
+      "lgbm": 1.0,
+      "hgb": 1.0
     },
     "disclaimer": "This is a screening tool, not a medical diagnosis. Consult a doctor."
   },
