@@ -1,5 +1,9 @@
-# Gunakan Python versi yang sama dengan Colab kamu
-FROM python:3.11-slim
+FROM python:3.13-slim
+
+# Install library sistem yang dibutuhkan LightGBM & XGBoost
+RUN apt-get update && apt-get install -y \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Hugging Face mewajibkan user ID 1000
 RUN useradd -m -u 1000 user
@@ -15,8 +19,8 @@ COPY --chown=user requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy semua sisa file (main.py, folder model, dll)
+# Copy semua sisa file
 COPY --chown=user . .
 
-# Hugging Face menggunakan port 7860 secara default
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
+# Jalankan FastAPI
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
